@@ -1,13 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+//import App from './App';
+//import './bulma.min.css';
 import * as serviceWorker from './serviceWorker';
 
+import {createStore, applyMiddleware} from 'redux'
+import {Provider} from 'react-redux'
+import thunk from 'redux-thunk'
+
+import rootReducer from './reducers'
+
+import AppContainer from './view/App.comp'
+
+const theStore = createStore(rootReducer, applyMiddleware(thunk))
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={theStore}>
+  <React.Fragment>
+    <AppContainer />
+  </React.Fragment>
+  </Provider>,
   document.getElementById('root')
 );
 
