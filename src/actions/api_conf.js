@@ -19,6 +19,10 @@ const apiObj = {
     /* =============================== GET ================================== */
     get: {
         all_doctors_by_clinic : '/getAllDoctorsByGroup/',
+        
+        all_schedules_by_patient_id : '/getSchedulesByPatientId/',
+        all_prescription_by_patient_id: '/getPrescriptionsByPatientId/',
+        all_bills_by_patient_id: '/getBillsByPatientId/',
     }
 }
 export default apiObj

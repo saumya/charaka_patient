@@ -64,7 +64,7 @@ const ScheduleCreateComponent = ()=>{
 
 
     return(
-        <div className="section">
+        <div className="container">
             <div className="title"> Schedule </div>
             <div className="subtitle">A New Appointment</div>
             

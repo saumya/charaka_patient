@@ -26,7 +26,7 @@ const LoginComponent = (props)=>{
                     <div className="field">
                         <label className="label">Password</label>
                         <div className="control">
-                            <input className="input" type="text" placeholder="Password" value={pUserPw} onChange={event=>setPassword(event.target.value)} />
+                            <input className="input" type="password" placeholder="Password" value={pUserPw} onChange={event=>setPassword(event.target.value)} />
                         </div>
                     </div>
                     <div className="field is-grouped">

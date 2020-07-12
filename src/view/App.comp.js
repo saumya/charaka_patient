@@ -11,6 +11,8 @@ import TableViewGeneral from './TableViewGeneral.comp'
 import LoginComponent from './Login.comp'
 import LoggedUserHome from './LoggedUserHome.comp'
 
+import Home1Component from './Home1.comp'
+
 import {update_message} from '../actions/messages_action'
 import {loginAction, updateLoginStatus} from '../actions/login_action'
 
@@ -30,44 +32,18 @@ const AppComponent = ()=>{
 
     return(
         <React.Fragment>
+            {/*
             <section className="section has-navbar-fixed-top" style={{marginTop:'4em'}}>
-            <div>
                 <TopBarComp />
                 <ModalGeneral showIt={false} data="This is Modal" />
-
-                {/* <BusyComp isBusy={ appMessages.app_is_busy }/> */}
-                
-                {/* <TableViewGeneral /> */}
+                <TableViewGeneral />
                 { appMessages.app_is_busy ? <progress className="progress is-small is-primary" max="100"/> : <progress className="progress is-small is-primary" value="0" max="100" />}
-
-                
-
-                
-
-                
-
                 <div className="container is-fluid">
-                    
-                    
-
                     { loginData.isLoggedIn ? <LoggedUserHome onLogout={onLogoutButtonClick} /> : <LoginComponent onLogin={onLoginButtonClick} /> }
-                    
-                    {/* <h1>{loginData.loginUserObj.name}</h1> */}
-
-                    {/* JSON.stringify(appMessages) */}
-
-                    
-                    
                 </div>
-                
-
-                
-                
-
-                
-                
-            </div>
             </section>
+            */}
+            <Home1Component />
         </React.Fragment>
     )
 }
