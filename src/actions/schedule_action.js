@@ -7,7 +7,6 @@ import {update_app_status_as_busy} from './messages_action'
 
 
 const updatePatientShedulesAction = schedules=>{
-    console.log('updatePatientShedulesAction')
     return({
         type: 'UPDATE_PATIENT_SCHEDULES',
         payload: schedules

@@ -6,6 +6,7 @@ import {connect, useSelector, useDispatch} from 'react-redux'
 
 import LoginComponent from './Login.comp'
 import LoggedUserHome from './LoggedUserHome.comp'
+import Prescription_1_Comp from './Prescription1.comp'
 
 import {update_message} from '../actions/messages_action'
 import {loginAction, updateLoginStatus} from '../actions/login_action'
@@ -20,7 +21,7 @@ const Home1Component = ()=>{
     const[isSideMenuOpen,setOpenSideMenu] = useState(false)
 
     // PROFILE / SCHEDULES / PRESCRIPTIONS / NEW_SCHEDULE
-    const[activeViewName, setActiveViewName] = useState('SCHEDULES')
+    const[activeViewName, setActiveViewName] = useState('PRESCRIPTIONS')
 
     const onLoginButtonClick = (loginObj)=>dispatch( loginAction(loginObj) )
     const onLogoutButtonClick = ()=>{
@@ -28,13 +29,21 @@ const Home1Component = ()=>{
         dispatch( updateLoginStatus(false) )
     }
 
+
     return(
         <React.Fragment>
-            
+
+{ 
+    appMessages.should_show_prescription ?
+    <Prescription_1_Comp />
+    : 
+
+           
 <section className="section">
     <div className="columns">
 
-        {isSideMenuOpen? 
+        { isSideMenuOpen ? 
+
         <div className="column is-narrow">
             <div className="box has-background-grey-lighter" style={{"width": "200px"}}>
                 
@@ -77,19 +86,22 @@ const Home1Component = ()=>{
                 
             </div>
         </div> 
-        :""}
+
+        : "" }
         
 
         <div className="column">
             <div className="box">
                 <nav className="level">
                     <div className="level-left">
-                    { 
-                        loginData.isLoggedIn ?
+                    
+                    { loginData.isLoggedIn ?
+
                             isSideMenuOpen ? "" : 
                             <button className="button is-text" onClick={()=>setOpenSideMenu( !isSideMenuOpen )}>Menu</button>
-                        : "" 
-                    }   
+                        
+                        : "" }   
+                    
                     </div>
                     <div className="level-right"> FindHealth </div>
                 </nav>
@@ -103,6 +115,7 @@ const Home1Component = ()=>{
 
     </div>
 </section>
+}
         </React.Fragment>
     )
 }

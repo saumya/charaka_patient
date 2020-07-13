@@ -77,3 +77,32 @@ export const updateProfileAction = userObj=>{
     }
 }
 // ---------------------------- UPDATE PROFILE / -------------------------------------
+
+
+// ------------- GET : Clinic Details : ----------------------
+const updateClinicDetailsAction = (clinic)=>({
+    type: 'CLINIC_DETAILS_UPDATE',
+    payload: clinic
+})
+const call_getClinicDetails_API = (clinicId)=>{
+    const url_1 = ApiObj.endpoint + ApiObj.version + ApiObj.get.clinic_by_id + clinicId
+    return fetch( url_1 )
+}
+export const getClinicDetailsAction = (clinicId)=>{
+    return dispatch=>{
+        //dispatch( update_app_status_as_busy(true) )
+        call_getClinicDetails_API(clinicId).then(success=>{
+            //dispatch( update_app_status_as_busy(false) )
+            success.json().then(result=>{
+                console.log('getClinicDetailsAction : RESULT : ', result)
+                dispatch( updateClinicDetailsAction(result) )
+            },error2=>{
+                console.log('getClinicDetailsAction : ERROR : 2 : ', error2)
+            })
+        },error=>{
+            console.log('getClinicDetailsAction : ERROR : ', error)
+            //dispatch( update_app_status_as_busy(false) ) 
+        })
+    }
+}
+// ------------- GET : Clinic Details : / ----------------------

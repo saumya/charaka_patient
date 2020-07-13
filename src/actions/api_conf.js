@@ -23,6 +23,9 @@ const apiObj = {
         all_schedules_by_patient_id : '/getSchedulesByPatientId/',
         all_prescription_by_patient_id: '/getPrescriptionsByPatientId/',
         all_bills_by_patient_id: '/getBillsByPatientId/',
+
+        clinic_by_id : '/getGroupWithId/',
+        doctor_by_id : '/getDoctorWithId/',
     }
 }
 export default apiObj

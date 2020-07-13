@@ -9,9 +9,11 @@ import ButtonsMenuComp from './ButtonsMenu.comp'
 import UserProfileComp from './UserProfile.comp'
 import ScheduleCreateComp from './ScheduleCreate.comp'
 import SchedulesList1 from './SchedulesList1.comp'
+import PrescriptionList1 from './PrescriptionList1.comp'
 
 import {update_message} from '../actions/messages_action'
 import {getDoctorsForClinicAction} from '../actions/doctor_action'
+import {getClinicDetailsAction} from '../actions/login_action'
 
 
 const LoggedUserHome = (props)=>{
@@ -28,9 +30,13 @@ const LoggedUserHome = (props)=>{
     //
     let calledDoctorsAPI = true
     useEffect(()=>{
-        //dispatch( update_message('User Login Avtive View') )
         dispatch( getDoctorsForClinicAction(1) ) // 1 = Since we are making it for this clinic
     },['calledDoctorsAPI'])
+
+    let calledClinicDetailsAPI = true
+    useEffect(()=>{
+        dispatch( getClinicDetailsAction(1) )
+    },['calledClinicDetailsAPI'])
     
     return(
         <React.Fragment>
@@ -45,7 +51,7 @@ const LoggedUserHome = (props)=>{
                 { (props.activeViewName==='NEW_SCHEDULE') ? <ScheduleCreateComp /> : "" }
                 { (props.activeViewName==='PROFILE') ? <UserProfileComp /> : "" }
                 { (props.activeViewName==='SCHEDULES') ? <SchedulesList1 /> : "" }
-                { (props.activeViewName==='PRESCRIPTIONS') ? <div>Prescription</div> : "" }
+                { (props.activeViewName==='PRESCRIPTIONS') ? <PrescriptionList1 /> : "" }
 
             
 
