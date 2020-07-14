@@ -20,8 +20,8 @@ const Home1Component = ()=>{
     //
     const[isSideMenuOpen,setOpenSideMenu] = useState(false)
 
-    // PROFILE / SCHEDULES / PRESCRIPTIONS / NEW_SCHEDULE
-    const[activeViewName, setActiveViewName] = useState('PRESCRIPTIONS')
+    // PROFILE / SCHEDULES / PRESCRIPTIONS / NEW_SCHEDULE / DOCTORS_LIST
+    const[activeViewName, setActiveViewName] = useState('NEW_SCHEDULE')
 
     const onLoginButtonClick = (loginObj)=>dispatch( loginAction(loginObj) )
     const onLogoutButtonClick = ()=>{
@@ -45,7 +45,7 @@ const Home1Component = ()=>{
         { isSideMenuOpen ? 
 
         <div className="column is-narrow">
-            <div className="box has-background-grey-lighter" style={{"width": "200px"}}>
+            <div className="box has-background-light" style={{"width": "200px"}}>
                 
                 <nav className="level">
                     <div className="level-left"></div>
@@ -76,6 +76,11 @@ const Home1Component = ()=>{
                 <div className="field">
                     <div className="control">
                         <button className="button is-link" onClick={()=>setActiveViewName('NEW_SCHEDULE')}>Schedule Now</button>
+                    </div>
+                </div>
+                <div className="field">
+                    <div className="control">
+                        <button className="button is-text" onClick={()=>setActiveViewName('DOCTORS_LIST')}>Doctors List</button>
                     </div>
                 </div>
                 <div className="field">

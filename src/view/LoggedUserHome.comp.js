@@ -10,6 +10,7 @@ import UserProfileComp from './UserProfile.comp'
 import ScheduleCreateComp from './ScheduleCreate.comp'
 import SchedulesList1 from './SchedulesList1.comp'
 import PrescriptionList1 from './PrescriptionList1.comp'
+import DoctorsListComp from './DoctorsList.comp'
 
 import {update_message} from '../actions/messages_action'
 import {getDoctorsForClinicAction} from '../actions/doctor_action'
@@ -52,6 +53,7 @@ const LoggedUserHome = (props)=>{
                 { (props.activeViewName==='PROFILE') ? <UserProfileComp /> : "" }
                 { (props.activeViewName==='SCHEDULES') ? <SchedulesList1 /> : "" }
                 { (props.activeViewName==='PRESCRIPTIONS') ? <PrescriptionList1 /> : "" }
+                { (props.activeViewName==='DOCTORS_LIST') ? <DoctorsListComp /> : "" }
 
             
 
