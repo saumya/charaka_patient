@@ -21,7 +21,7 @@ const Home1Component = ()=>{
     const[isSideMenuOpen,setOpenSideMenu] = useState(false)
 
     // PROFILE / SCHEDULES / PRESCRIPTIONS / NEW_SCHEDULE / DOCTORS_LIST
-    const[activeViewName, setActiveViewName] = useState('NEW_SCHEDULE')
+    const[activeViewName, setActiveViewName] = useState('DOCTORS_LIST')
 
     const onLoginButtonClick = (loginObj)=>dispatch( loginAction(loginObj) )
     const onLogoutButtonClick = ()=>{

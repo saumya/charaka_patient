@@ -11,8 +11,8 @@ const LoginComponent = (props)=>{
 
     return(
         <React.Fragment>
-        <div class="columns is-centered">
-        <div class="column is-half">
+        <div className="columns is-centered">
+        <div className="column is-half">
 
             <div className="container is-fluid">
                 <div className="notification">

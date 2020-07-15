@@ -19,7 +19,10 @@ const DoctorsListComponent = ()=>{
                     {/* JSON.stringify(doctorsList) */}
                     {
                     doctorsList.map( doctor=>(
-                        <div key={doctor.id}> {doctor.name} - {doctor.specialization} </div>
+                        <div key={doctor.id}>
+                            <div className="is-size-4 has-text-weight-bold">{doctor.name}</div>
+                            <div className="is-size-6">{doctor.specialization}</div> 
+                        </div>
                     ) )
                     }
                 </div>
