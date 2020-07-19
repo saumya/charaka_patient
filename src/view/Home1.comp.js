@@ -111,7 +111,7 @@ const Home1Component = ()=>{
                     <div className="level-right"> FindHealth </div>
                 </nav>
                 <p className="title is-5">  </p>
-                <p className="subtitle">  </p>
+                    <p className="subtitle">  </p>
 
                 { loginData.isLoggedIn ? <LoggedUserHome activeViewName={activeViewName} onLogout={onLogoutButtonClick} /> : <LoginComponent onLogin={onLoginButtonClick} /> }
 

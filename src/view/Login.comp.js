@@ -2,12 +2,22 @@
 // Login.comp.js
 
 import React,{useState} from 'react'
+import {useSelector} from 'react-redux'
 
 
 const LoginComponent = (props)=>{
 
-    let [pUserId, setUserId] = useState('')
-    let [pUserPw, setPassword] = useState('')
+    const appMessages = useSelector( state=> state.messages )
+
+    const [pUserId, setUserId] = useState('')
+    const [pUserPw, setPassword] = useState('')
+    const [isFirstTime, setIsFirstTime] = useState(true)
+
+    const onLoginClick = (event)=>{
+        //console.log( event )
+        setIsFirstTime(false)
+        props.onLogin({pUserId,pUserPw})
+    }
 
     return(
         <React.Fragment>
@@ -35,9 +45,19 @@ const LoginComponent = (props)=>{
                         </div>
                         <div className="field is-grouped">
                             <div className="control">
-                                <button className="button is-link" onClick={()=>props.onLogin({pUserId,pUserPw})}>Login</button>
+                                <button className="button is-link" onClick={onLoginClick}>Login</button>
+                                
+                                { isFirstTime ? "" :
+                                    <span className="has-text-danger" style={{"margin":"1em"}}>{ appMessages.msg_info }</span> 
+                                }
+                                
                             </div>
                         </div>
+
+                        { appMessages.app_is_busy 
+                        ? <progress className="progress is-small is-dark" max="100" /> 
+                        : <progress className="progress is-small is-dark" max="100" value="0" />  }
+                        
                     </div>
                     <p>
                         It is <strong>best</strong> to use a <strong>Desktop/Laptop</strong> for this application. 

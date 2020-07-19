@@ -4,7 +4,7 @@
 
 import ApiObj from './api_conf'
 
-import {update_app_status_as_busy} from './messages_action'
+import {update_message, update_app_status_as_busy} from './messages_action'
 
 
 export const updateLoginStatus = isLoggedIn=>({
@@ -35,17 +35,21 @@ const call_LoginPatientAPI = (loginObj) => {
 export const loginAction = loginObj=>{
     return function (dispatch) {
         dispatch( update_app_status_as_busy(true) )
+        dispatch( update_message('Validating the Login. Please Wait ...') )
         call_LoginPatientAPI(loginObj).then(success=>{
             success.json().then(result=>{
                 console.log('Login : Success', result)
                 if(result.success===false){
                     dispatch( updateLoginStatus(false) )
+                    dispatch( update_message('Login Failed. Try again.') )
                   }else{
                     dispatch( updateLoginStatusAndData({ isLoggedIn: true, loginUserObj: result.data}) )
+                    dispatch( update_message('Login Success.') )
                   }
                   dispatch( update_app_status_as_busy(false) )
             },error_2=>{
                 console.log('Login : ERROR : 2 : ',error_2)
+                dispatch( update_app_status_as_busy(false) )
             })
         },error=>{
             console.log('Login : ERROR : ',error)
