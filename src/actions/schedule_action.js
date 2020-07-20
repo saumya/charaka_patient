@@ -12,6 +12,10 @@ const updatePatientShedulesAction = schedules=>{
         payload: schedules
     })
 }
+const updateDoctorSchedulesPerDayAction = schedules=>({
+    type: 'UPDATE_DOCTOR_SCHEDULES_PER_DAY',
+    payload: schedules
+})
 
 // ----------------- CREATE SCHEDULE --------------------------
 const call_createSchedule_api = (scheduleObj) => {
@@ -64,3 +68,29 @@ export const getMySchedulesAction = patientId=>{
     }
 }
 // ----------------- GET ALL SCHEDULES / ----------------------
+// ---- GET ALL SCHEDULES : FOR A DCOTOR FOR A DAY ------------
+const call_getAllSchedulesForADcotorForADay_api = (clinicId,doctorId,onDate)=>{
+    const url_1 = ApiObj.endpoint + ApiObj.version 
+                    + ApiObj.get.all_schedules_by_clinic_by_doctor_on_date 
+                    + clinicId + '/' + doctorId + '/' + onDate
+    return fetch(url_1)
+}
+export const getDoctorSchedulesPerDayAction = (clinicId,doctorId,onDate)=>{
+    return dispatch=>{
+        dispatch( update_app_status_as_busy(true) )
+        call_getAllSchedulesForADcotorForADay_api( clinicId, doctorId, onDate  ).then(success=>{
+            dispatch( update_app_status_as_busy(false) )
+            //console.log('call_getAllSchedulesOfPatient_api : SUCCESS :', success)
+            success.json().then(result=>{
+                console.log('call_getAllSchedulesOfPatient_api : SUCCESS :', result)
+                dispatch( updateDoctorSchedulesPerDayAction(result) )
+            },error2=>{
+                console.log('call_getAllSchedulesOfPatient_api : SUCCESS :', error2)   
+            })
+        },error=>{
+            dispatch( update_app_status_as_busy(false) )
+            console.log('call_getAllSchedulesOfPatient_api : ERROR :', error)
+        })
+    }
+}
+// ---- GET ALL SCHEDULES : FOR A DCOTOR FOR A DAY / ----------
