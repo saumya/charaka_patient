@@ -6,6 +6,8 @@ import {connect, useSelector, useDispatch} from 'react-redux'
 import {createScheduleAction, getDoctorSchedulesPerDayAction} from '../actions/schedule_action'
 
 import BusyComp from './Busy.comp'
+import DateSelectionComp from './DateSelection.comp'
+import SessionSelectionComp from './SessionSelection.comp'
 
 
 
@@ -24,21 +26,29 @@ const ScheduleCreateComponent = ()=>{
     const[onDate, setOnDate] = useState('2020-07-05')
     const[selectionIsMorning, setSelectionIsMorning] = useState(false)
     const[selectedDoctorDetails, seSelectedDoctorDetails] = useState({})
-
+    
+    /*
     const onDateSelection = (event)=>{
-        //console.log(event.target.value)
+        console.log(event.target.value)
         setOnDate(event.target.value)
     }
+    */
+    const onDateSelection2 = (newDate)=>{
+        console.log(newDate)
+        setOnDate( newDate )
+    }
+    const onTimeSelection2 = (isMorning)=> setSelectionIsMorning(isMorning)
 
-
+    /*
     const onTimeSelection = (event)=>{
-        //console.log(event.target.value)
+        console.log(event.target.value)
         if(event.target.value==='morning'){
             setSelectionIsMorning(true)
         }else{
             setSelectionIsMorning(false)
         }
     }
+    */
 
     const onDoctorSelectionDone = (event)=>{
         setSelectedDoctorId(event.target.value)
@@ -89,13 +99,18 @@ const ScheduleCreateComponent = ()=>{
             
             {/* JSON.stringify(loggedInUser) */}
             {/* JSON.stringify(doctorSchedules) */}
-
+            {/*
             <div className="field">
                 <label className="label">On date</label>
                 <div className="control">
                     <input className="input" type="date" placeholder="Date" onChange={onDateSelection}/>
                 </div>
             </div>
+            */}
+
+            <DateSelectionComp onDateSelected={onDateSelection2} />
+            <SessionSelectionComp onSessionSelect={onTimeSelection2} />
+            {/*
             <div className="field">
                 <label className="label">Morning / Evening</label>
                 <div className="control">
@@ -108,8 +123,9 @@ const ScheduleCreateComponent = ()=>{
                     </div>
                 </div>
             </div>
+            */}
             <div className="field">
-                <label className="label">Doctor {doctorSelected ? '' : <span className="tag is-danger">Select A Doctor</span> } </label>
+                <label className="is-size-4"> Doctor  {doctorSelected ? '' : <span className="tag is-danger">Select A Doctor</span> } </label>
                 
                 <div className="control">
                     <div className="select">
@@ -130,14 +146,19 @@ const ScheduleCreateComponent = ()=>{
                         <button className="button" onClick={onCheckMyChanceClick}> Check My Chance </button>
                     </div>
                     
-                    <span className="is-size-6">{ new Date(onDate).toDateString() }</span>
-                    <span className="is-size-6"> | </span>
-                    <span className="is-size-6">{selectedDoctorDetails.name}</span>
+                    <div>
+                        <strong>
+                        <span className="is-size-6">{ new Date(onDate).toDateString() }</span>
+                        <span className="is-size-6"> . </span>
+                        <span className="is-size-6"> { selectionIsMorning ? "Morning" : "Evening"} </span>
+                        <span className="is-size-6"> . </span>
+                        <span className="is-size-6">{selectedDoctorDetails.name}</span>
+                        </strong>
+                    </div>
 
                     <div>
-                        Number of Schedules, 
-                        <p> Morning - <span className="is-size-6 has-text-weight-bold"> {doctorNumSchedules.morning} </span> </p>
-                        <p> Evening - <span className="is-size-6 has-text-weight-bold"> {doctorNumSchedules.evening} </span> </p>
+                        <span> Morning - <span className="is-size-6 has-text-weight-bold"> {doctorNumSchedules.morning} </span> </span>
+                        <span> Evening - <span className="is-size-6 has-text-weight-bold"> {doctorNumSchedules.evening} </span> </span>
                     </div>
                     
                 </div>
