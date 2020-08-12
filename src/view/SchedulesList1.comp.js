@@ -26,9 +26,15 @@ const SchedulesList1Component = ()=>{
 
     const getMySchedules = ()=>dispatch( getMySchedulesAction(loginData.id) )
     const joinWebConference = (url)=>{
-        //console.log('joinWebConference : url :',url)
+        // console.log('joinWebConference : url :',url)
+        /*
         const windowFeatures = "menubar=no,location=no,resizable=yes,scrollbars=no,status=no"
         const newWindow = window.open(url, 'FH:WebConferencing', windowFeatures)
+        window.console.log('newWindow:', newWindow )
+        */
+        const urlMeeting = 'meeting.html' + '#' + url
+        const windowFeatures = "menubar=no,location=no,resizable=yes,scrollbars=no,status=no"
+        const newWindow = window.open(urlMeeting, 'FH:WebConferencing', windowFeatures)
         window.console.log('newWindow:', newWindow )
     }
     

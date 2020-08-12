@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FindHealth | Consulting</title>
+
+    <link rel="stylesheet" href="bulma.min.css">
+
+    <script src='https://meet.jit.si/external_api.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/webtorrent@0.108.6/webtorrent.min.js"></script>
+</head>
+<body>
+    
+    <section class="section" id="meet"></section>
+    <section class="section">
+		<h3 class="title"> Send </h3>
+		<h4 class="subtitle"> Select a file to send </h4>
+		<input class="input is-info" id="inputFile" type="file" name="fileupload" value="fileupload" />
+		<textarea class="textarea is-info" id="divInfo" placeholder="Please wait for it." style="width:36em; height:14em; overflow: scroll;"></textarea>
+	</section>
+
+    <script>
+        (function(){
+
+            //ref: https://jitsi.org/api/
+
+            const jitsiUrl = "https://meet.jit.si/";
+            const u1 = window.location.hash.substr(1);
+            const u2 = u1.substr( jitsiUrl.length );
+            /*
+            console.log('---------------------------');
+            console.log( window.location.hash );
+            console.log( window.location.hash.substr(1) );
+            console.log('room', u2);
+            console.log('---------------------------');
+            */
+            const domain = 'meet.jit.si';
+            const options = {
+                roomName: u2,
+                width: "100%",
+                height: window.innerHeight,
+                parentNode: document.querySelector('#meet')
+            };
+            const api = new JitsiMeetExternalAPI(domain, options);
+            //
+
+            // ---------- File Sharing ---------- 
+            const onFileChange = function(event){
+				console.log('onFileChange')
+				var fileList = event.target.files
+				//console.log(fileList[0])
+
+				const client = new WebTorrent()
+				client.seed(fileList, function(torrent){
+					console.log('Seeding',torrent.magnetURI)
+					$('#divInfo').html( torrent.magnetURI )
+					// Copying to Clipboard
+					navigator.clipboard.writeText( torrent.magnetURI )
+				})
+			}
+            $('#inputFile').on('change', onFileChange)
+            // ---------- File Sharing/ ---------- 
+        }())
+    </script>
+</body>
+</html>

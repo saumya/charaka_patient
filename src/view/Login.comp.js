@@ -24,12 +24,12 @@ const LoginComponent = (props)=>{
         <div className="columns is-centered">
         <div className="column is-half">
 
-            <div className="container is-fluid">
-                <div className="notification">
+            <div className="container">
+                
                     
 
-                    <p className="mb-4 is-size-3"> Login </p>
-                    <p>Please <strong>Login</strong> with id and Password. </p>
+                    <p className="title"> Login </p>
+                    <p className="subtitle"> Use your id and Password. </p>
                     <div>
                         <div className="field">
                             <label className="label">Id</label>
@@ -48,12 +48,12 @@ const LoginComponent = (props)=>{
                                 <button className="button is-link" onClick={onLoginClick}>Login</button>
                                 
                                 { isFirstTime ? "" :
-                                    <span className="has-text-danger" style={{"margin":"1em"}}>{ appMessages.msg_info }</span> 
+                                    <div className="has-text-danger" style={{"margin":"1em"}}>{ appMessages.msg_info }</div> 
                                 }
                                 
                             </div>
                         </div>
-
+                        
                         { appMessages.app_is_busy 
                         ? <progress className="progress is-small is-dark" max="100" /> 
                         : <progress className="progress is-small is-dark" max="100" value="0" />  }
@@ -63,7 +63,7 @@ const LoginComponent = (props)=>{
                         It is <strong>best</strong> to use a <strong>Desktop/Laptop</strong> for this application. 
                     </p>
 
-                </div>
+                
             </div>
 
         </div>
