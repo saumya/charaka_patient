@@ -5,7 +5,7 @@
 import React, {useState} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 
-import {updateProfileAction} from '../actions/login_action'
+import {updateProfileAction, updateHealthProfileAction} from '../actions/login_action'
 
 
 const UserProfile = ()=>{
@@ -20,7 +20,6 @@ const UserProfile = ()=>{
 
     const onUpdateProfileClick = ()=>{
         console.log('onUpdateProfileClick', userProfile)
-        console.log('TODO: Action and Reducer')
         // serialising data as per API request
         const newProfile = {
             personId: userProfile.id,
@@ -34,14 +33,62 @@ const UserProfile = ()=>{
         dispatch( updateProfileAction(newProfile) )
     }
 
+    const onUpdateHealthProfileClick = ()=>{
+        console.log('onUpdateHealthProfileClick', userProfile);
+        dispatch( updateHealthProfileAction(userProfile) )
+    }
+
 
     
 
     return(
         <React.Fragment>
+            
+            <div className="notification">
+                <p className="mb-4 is-size-3"> Health Profile </p>
+                
+                <div className="field">
+                    <label className="label">Gender</label>
+                    <div className="control">
+                        <input className="input" type="text" placeholder="Gender" value={userProfile.gender || ''} onChange={ event=>setUserProfile({ ...userProfile, gender:event.target.value}) } />
+                    </div>
+                </div>
+                <div className="field">
+                    <label className="label">Age</label>
+                    <div className="control">
+                        <input className="input" type="text" placeholder="Age" value={userProfile.age || ''} onChange={ event=>setUserProfile({ ...userProfile, age:event.target.value}) } />
+                    </div>
+                </div>
+                <div className="field">
+                    <label className="label">Height</label>
+                    <div className="control">
+                        <input className="input" type="text" placeholder="Height" value={userProfile.height || ''} onChange={ event=>setUserProfile({ ...userProfile, height:event.target.value}) } />
+                    </div>
+                </div>
+                <div className="field">
+                    <label className="label">Weight</label>
+                    <div className="control">
+                        <input className="input" type="text" placeholder="Weight" value={userProfile.weight || ''} onChange={ event=>setUserProfile({ ...userProfile, weight:event.target.value}) } />
+                    </div>
+                </div>
+                <div className="field">
+                    <label className="label">BloodGroup</label>
+                    <div className="control">
+                        <input className="input" type="text" placeholder="BloodGroup" value={userProfile.bloodGroup || ''} onChange={ event=>setUserProfile({ ...userProfile, bloodGroup:event.target.value}) } />
+                    </div>
+                </div>
+
+                <div className="field is-grouped">
+                    <div className="control">
+                        <button className="button is-link" onClick={onUpdateHealthProfileClick}>Update Health Profile</button>
+                    </div>
+                </div>
+                
+            </div>
+
             <div className="notification">
 
-                <p className="mb-4 is-size-3"> Profile </p>
+                <p className="mb-4 is-size-3"> General Profile </p>
                 
                 <div>
                     <div className="field">

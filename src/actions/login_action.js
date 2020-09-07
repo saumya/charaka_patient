@@ -81,6 +81,29 @@ export const updateProfileAction = userObj=>{
     }
 }
 // ---------------------------- UPDATE PROFILE / -------------------------------------
+// ---------------------------- UPDATE HEALTH PROFILE ---------------------------------------
+const call_updateHealthProfileAPI = profileObj => {
+    const url_1 = ApiObj.endpoint + ApiObj.version + ApiObj.put.update_patient_health_profile
+    const fetch_data = {
+        method : 'PUT',
+        mode: 'cors', headers: new Headers({'Content-Type':'application/json'}),
+        body: JSON.stringify(profileObj)
+    }
+    return fetch(url_1, fetch_data)
+}
+export const updateHealthProfileAction = userProfile => {
+    return function(dispatch){
+        dispatch( update_app_status_as_busy(true) )
+        call_updateHealthProfileAPI(userProfile).then(success=>{
+            console.log('UpdateHealthProfile : SUCCESS : ', success)
+            dispatch( update_app_status_as_busy(false) )
+        },error=>{
+            console.log('UpdateHealthProfile : ERROR : ', error)
+            dispatch( update_app_status_as_busy(false) )
+        })
+    }
+}
+// ---------------------------- UPDATE HEALTH PROFILE / ---------------------------------------
 
 
 // ------------- GET : Clinic Details : ----------------------

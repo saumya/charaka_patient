@@ -13,6 +13,7 @@ const apiObj = {
     /* =============================== PUT ================================== */
     put: {
         update_patient_profile : '/updatePerson/',
+        update_patient_health_profile : '/updatePersonProfile'
     },
     /* =============================== DELETE ================================== */
     delete: {},
