@@ -2,13 +2,21 @@ Scheduler UI | Patient
 =======================
 
 A companion project for [Scheduler API][1]. 
-Doctor UI for managing the profile and schedules.
+Patient UI for managing personal Prescriptions and Schedules.
 
  - [x] Login
  - [x] Update Profile
  - [x] Create Schedules
  - [x] View Prescriptions
  - [x] Logout
+
+### wip
+
+ - [] Delete Prescription
+
+
+
+
 
 ### Technology
 
