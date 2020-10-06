@@ -2,11 +2,17 @@
 // ModalGeneral.comp.js
 //
 
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 const ModalGeneralComponent = (props)=>{
+    
     let [isActive, setActive] = useState(props.showIt)
     const onClose = ()=> setActive(false) 
+
+    useEffect(()=>{
+        setActive(props.showIt)
+    }, [props.showIt])
+
 
     const renderModal = ()=>(
         <div className="modal is-active">

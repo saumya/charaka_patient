@@ -2,11 +2,15 @@
 // PrescriptionList1.comp.js
 //
 
-import React from 'react'
+import React, {useState} from 'react'
 import {connect, useSelector, useDispatch} from 'react-redux'
+
+import ModalGeneralComponent from './ModalGeneral.comp'
+import ModalDeleteConfirmComp from './ModalDeleteConfirmPrescription.comp'
 
 import {getMyPrescriptionsAction} from '../actions/prescription_action'
 import {update_prescription_display_action} from '../actions/messages_action'
+
 
 const PrescriptionList_1_Component = ()=>{
     
@@ -17,6 +21,8 @@ const PrescriptionList_1_Component = ()=>{
 
     const getMyPrescriptions = ()=>dispatch( getMyPrescriptionsAction(loginData.id) )
 
+    let [ isModalConfirmationVisible, setModalVisibility ] = useState(false)
+
     const onPrescriptionDetailClick = (prescription)=>{
         console.log('onPrescriptionDetailClick :',prescription)
         //dispatch( getMyPrescriptionsAction(loginData.id) )
@@ -26,10 +32,15 @@ const PrescriptionList_1_Component = ()=>{
             prescription: prescription
         }) )
     }
+
+    const onDeleteClick = ()=> setModalVisibility(true)
+    const onModalCloseClick = ()=> setModalVisibility(false)
+    
     
 
     return(
         <React.Fragment>
+            <ModalDeleteConfirmComp showIt={isModalConfirmationVisible} closeIt={onModalCloseClick} />
             <div className="container">
                 <div className="title"> My Prescriptions </div>
                 <div className="subtitle"> All the prescriptions { appMessages.app_is_busy ? "Please Wait ..." : "" } </div> 
@@ -60,8 +71,11 @@ const PrescriptionList_1_Component = ()=>{
                                         </div>
                                     </div>
                                     <div className="level-right">
-                                        <div style={{paddingRight:'1em'}}>
+                                        <div style={{paddingRight:'0.1em'}}>
                                             <button className="button is-info" onClick={()=>onPrescriptionDetailClick(prescription)}>Details</button> 
+                                        </div>
+                                        <div style={{paddingRight:'1em'}}>
+                                            <button className="button is-danger" onClick={()=>onDeleteClick()}>Delete</button> 
                                         </div>
                                     </div>
                                 </div>
