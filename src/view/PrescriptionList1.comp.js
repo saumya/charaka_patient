@@ -35,12 +35,13 @@ const PrescriptionList_1_Component = ()=>{
 
     const onDeleteClick = ()=> setModalVisibility(true)
     const onModalCloseClick = ()=> setModalVisibility(false)
+    const onModalYesClick = ()=> { console.log('TODO: Delete This prescription') }
     
     
 
     return(
         <React.Fragment>
-            <ModalDeleteConfirmComp showIt={isModalConfirmationVisible} closeIt={onModalCloseClick} />
+            <ModalDeleteConfirmComp showIt={isModalConfirmationVisible} closeIt={onModalCloseClick} deleteIt={onModalYesClick} />
             <div className="container">
                 <div className="title"> My Prescriptions </div>
                 <div className="subtitle"> All the prescriptions { appMessages.app_is_busy ? "Please Wait ..." : "" } </div> 

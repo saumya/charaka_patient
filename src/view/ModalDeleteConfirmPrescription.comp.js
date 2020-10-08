@@ -5,6 +5,7 @@ const ModalDeleteConfirmPrescription = (props)=>{
     
     const [isActive, setActive] = useState(false)
     const onClose = ()=> { props.closeIt() }
+    const onDelete = ()=> { props.deleteIt() }
     useEffect(()=> setActive(props.showIt) )
     
 
@@ -26,10 +27,10 @@ const ModalDeleteConfirmPrescription = (props)=>{
                             <div className="level-left"> </div>
                             <div className="level-right">
                                 <div style={{paddingRight:'0.4em'}}>
-                                    <button className="button is-success"> Yes </button> 
+                                    <button className="button is-success" onClick={onDelete}> Yes </button> 
                                 </div>
                                 <div style={{paddingRight:'1em'}}>
-                                    <button className="button is-danger"> No </button> 
+                                    <button className="button is-danger" onClick={onClose}> No </button> 
                                 </div>
                             </div>
                         </div>
