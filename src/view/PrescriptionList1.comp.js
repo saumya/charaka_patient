@@ -21,7 +21,8 @@ const PrescriptionList_1_Component = ()=>{
 
     const getMyPrescriptions = ()=>dispatch( getMyPrescriptionsAction(loginData.id) )
 
-    let [ isModalConfirmationVisible, setModalVisibility ] = useState(false)
+    const [ isModalConfirmationVisible, setModalVisibility ] = useState(false)
+    const [ prescriptionToDelete, setPrescriptionToDelete] = useState(null)
 
     const onPrescriptionDetailClick = (prescription)=>{
         console.log('onPrescriptionDetailClick :',prescription)
@@ -33,9 +34,18 @@ const PrescriptionList_1_Component = ()=>{
         }) )
     }
 
-    const onDeleteClick = ()=> setModalVisibility(true)
-    const onModalCloseClick = ()=> setModalVisibility(false)
-    const onModalYesClick = ()=> { console.log('TODO: Delete This prescription') }
+    const onDeleteClick = (prescription)=> { 
+        setPrescriptionToDelete(prescription)
+        setModalVisibility(true)
+    }
+    const onModalCloseClick = ()=> {
+        setPrescriptionToDelete(null)
+        setModalVisibility(false)
+    }
+    const onModalYesClick = ()=> { 
+        console.log('TODO: Delete This prescription') 
+        console.log('Prescription', prescriptionToDelete)
+    }
     
     
 
@@ -76,7 +86,7 @@ const PrescriptionList_1_Component = ()=>{
                                             <button className="button is-info" onClick={()=>onPrescriptionDetailClick(prescription)}>Details</button> 
                                         </div>
                                         <div style={{paddingRight:'1em'}}>
-                                            <button className="button is-danger" onClick={()=>onDeleteClick()}>Delete</button> 
+                                            <button className="button is-danger" onClick={()=>onDeleteClick(prescription)}>Delete</button> 
                                         </div>
                                     </div>
                                 </div>
