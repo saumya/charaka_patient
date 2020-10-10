@@ -12,7 +12,7 @@ Patient UI for managing personal Prescriptions and Schedules.
 
 ### wip
 
- - [] Delete Prescription
+ - [] Delete Prescription : Working on it.
 
 
 
