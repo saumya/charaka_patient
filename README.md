@@ -2,6 +2,7 @@ Scheduler UI | Patient
 =======================
 
 A companion project for [Scheduler API][1]. 
+
 Patient UI for managing personal Prescriptions and Schedules.
 
  - [x] Login
@@ -9,6 +10,8 @@ Patient UI for managing personal Prescriptions and Schedules.
  - [x] Create Schedules
  - [x] View Prescriptions
  - [x] Logout
+
+This uses a different CSS framework than the others in this group.
 
 ### wip
 
