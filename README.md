@@ -11,7 +11,6 @@ Patient UI for managing personal Prescriptions and Schedules.
  - [x] View Prescriptions
  - [x] Logout
 
-This uses a different CSS framework than the others in this group.
 
 ### wip
 
