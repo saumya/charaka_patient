@@ -3,7 +3,7 @@ Scheduler UI | Patient
 
 A companion project for [Scheduler API][1]. 
 
-Patient UI for managing personal Prescriptions and Schedules.
+Patient UI for managing personal Prescriptions and Schedules. Mobile first web UI but best usage is on bigger screens.
 
  - [x] Login
  - [x] Update Profile
@@ -15,8 +15,6 @@ Patient UI for managing personal Prescriptions and Schedules.
 ### wip
 
  - [] Delete Prescription : Working on it.
-
-
 
 
 
