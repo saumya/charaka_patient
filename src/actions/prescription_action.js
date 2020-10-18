@@ -26,15 +26,45 @@ export const getMyPrescriptionsAction = patientId=>{
             dispatch( update_app_status_as_busy(false) )
             
             success.json().then(result=>{
-                console.log('call_getAllSchedulesOfPatient_api : SUCCESS :', result)
+                console.log('call_getAllPrescriptionsOfPatient_api : SUCCESS :', result)
                 dispatch( updatePatientPrescriptionsAction(result) )
             },error2=>{
-                console.log('call_getAllSchedulesOfPatient_api : SUCCESS :', error2)   
+                console.log('call_getAllPrescriptionsOfPatient_api : SUCCESS :', error2)   
             })
         },error=>{
             dispatch( update_app_status_as_busy(false) )
-            console.log('call_getAllSchedulesOfPatient_api : ERROR :', error)
+            console.log('call_getAllPrescriptionsOfPatient_api : ERROR :', error)
         })
     }
 }
 // ----------------- GET ALL PRESCRIPTIONS / ----------------------
+
+// ----------------- DELETE PRESCRIPTION ------------------------
+const call_deletePrescriptionWithId_api = prescriptionId=>{
+    const url_1 = ApiObj.endpoint + ApiObj.version + ApiObj.delete.prescription_with_id
+    const fetch_data = {
+        method: 'DELETE', 
+        mode: 'cors', headers: new Headers({ 'Content-Type': 'application/json' }),
+        body: JSON.stringify(prescriptionId)
+    }
+    return fetch(url_1, fetch_data)
+}
+export const deletePrescriptionWithIdAction = prescriptionId => {
+    return dispatch=>{
+        dispatch( update_app_status_as_busy(true) )
+        call_deletePrescriptionWithId_api(prescriptionId).then(success=>{
+            dispatch( update_app_status_as_busy(false) )
+            
+            success.json().then(result=>{
+                console.log('RESULT : call_deletePrescriptionWithId_api', result)
+            },error2=>{
+                console.log('ERROR: 2 : call_deletePrescriptionWithId_api', error2)
+            })
+
+        }, error=>{
+            dispatch( update_app_status_as_busy(false) )
+            console.log('ERROR: 1 : call_deletePrescriptionWithId_api', error)
+        })
+    }
+}
+// ----------------- DELETE PRESCRIPTION / ------------------------

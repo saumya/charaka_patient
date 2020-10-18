@@ -8,7 +8,8 @@ import {connect, useSelector, useDispatch} from 'react-redux'
 import ModalGeneralComponent from './ModalGeneral.comp'
 import ModalDeleteConfirmComp from './ModalDeleteConfirmPrescription.comp'
 
-import {getMyPrescriptionsAction} from '../actions/prescription_action'
+import {    getMyPrescriptionsAction, 
+            deletePrescriptionWithIdAction } from '../actions/prescription_action'
 import {update_prescription_display_action} from '../actions/messages_action'
 
 
@@ -19,7 +20,7 @@ const PrescriptionList_1_Component = ()=>{
     const loginData = useSelector( state=> state.loginData.loginUserObj )
     const allPrescriptionsData = useSelector( state=> state.prescriptionsData.patient_prescriptions )
 
-    const getMyPrescriptions = ()=>dispatch( getMyPrescriptionsAction(loginData.id) )
+    const getMyPrescriptions = ()=>dispatch( getMyPrescriptionsAction(loginData.id) ) 
 
     const [ isModalConfirmationVisible, setModalVisibility ] = useState(false)
     const [ prescriptionToDelete, setPrescriptionToDelete] = useState(null)
@@ -45,6 +46,14 @@ const PrescriptionList_1_Component = ()=>{
     const onModalYesClick = ()=> { 
         console.log('TODO: Delete This prescription') 
         console.log('Prescription', prescriptionToDelete)
+        dispatch( deletePrescriptionWithIdAction(prescriptionToDelete) )
+        //
+        if(appMessages.app_is_busy){
+            //
+        }else{
+            setModalVisibility(false)
+            //getMyPrescriptions()
+        }
     }
     
     

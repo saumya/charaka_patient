@@ -16,7 +16,9 @@ const apiObj = {
         update_patient_health_profile : '/updatePersonProfile'
     },
     /* =============================== DELETE ================================== */
-    delete: {},
+    delete: {
+        prescription_with_id: '/deletePrescription'
+    },
     /* =============================== GET ================================== */
     get: {
         all_doctors_by_clinic : '/getAllDoctorsByGroup/',

@@ -8,6 +8,7 @@ const ModalDeleteConfirmPrescription = (props)=>{
     const onDelete = ()=> { props.deleteIt() }
     useEffect(()=> setActive(props.showIt) )
     
+    
 
     const renderModal = ()=>(
         <div className="modal is-active">
@@ -26,6 +27,7 @@ const ModalDeleteConfirmPrescription = (props)=>{
                         <div className="level">
                             <div className="level-left"> </div>
                             <div className="level-right">
+                                
                                 <div style={{paddingRight:'0.4em'}}>
                                     <button className="button is-success" onClick={onDelete}> Yes </button> 
                                 </div>
