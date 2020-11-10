@@ -40,11 +40,11 @@ const Home1Component = ()=>{
 
            
 <section className="section">
-    <div className="columns">
+    <div className="columns is-mobile">
 
         { isSideMenuOpen ? 
 
-        <div className="column is-narrow">
+        <div className="column">
             <div className="box has-background-light" style={{"width": "200px"}}>
                 
                 <nav className="level">
