@@ -13,6 +13,7 @@ const UserProfile = ()=>{
     const dispatch = useDispatch()
 
     // Redux Store
+    const appMessages = useSelector( state=> state.messages )
     const loggedInUser = useSelector(state=> state.loginData)
     
     // Local State
@@ -83,6 +84,14 @@ const UserProfile = ()=>{
                         <button className="button is-link" onClick={onUpdateHealthProfileClick}>Update Health Profile</button>
                     </div>
                 </div>
+
+                <div className="field">
+                { 
+                    appMessages.app_is_busy 
+                    ? <progress className="progress is-small is-dark" max="100" /> 
+                    : <progress className="progress is-small is-dark" max="100" value="0" />  
+                }
+                </div>
                 
             </div>
 
@@ -130,6 +139,15 @@ const UserProfile = ()=>{
                             <button className="button is-link" onClick={onUpdateProfileClick}>Update</button>
                         </div>
                     </div>
+                    
+                    <div className="field">
+                    { 
+                        appMessages.app_is_busy 
+                        ? <progress className="progress is-small is-dark" max="100" /> 
+                        : <progress className="progress is-small is-dark" max="100" value="0" />  
+                    }
+                    </div>
+
                 </div>
 
             </div>
